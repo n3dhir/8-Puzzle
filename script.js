@@ -34,6 +34,50 @@ cells.forEach((cell) => {
         break;
       }
     }
+    e.target.style.cssText = ""
+    e.target.classList.remove("left");
+    e.target.classList.remove("right");
+    e.target.classList.remove("up");
+    e.target.classList.remove("down");
+  })
+  cell.addEventListener("mouseover", (e) => {
+    if (e.target.innerHTML === '') {
+      return;
+    }
+    else {
+      e.target.style.cssText = "";
+      let neighbors = getNeighbors(e.target.id);
+      for (let i = 0; i < neighbors.length; i++) {
+        let neighbor = document.querySelector(`#${neighbors[i]}`);
+        if (neighbor.innerHTML === '') {
+          e.target.style.cssText = "color: var(--color, #c39a3b);background-color: var(--back-color, #212121);border-color: var(--color, #c39a3b);cursor: pointer;transition: 0.5s;"
+          let currentId = e.target.id.substr(1);
+          let neighborId = neighbor.id.substr(1);
+          let diff = currentId - neighborId;
+          switch (diff) {
+            case 1:
+              e.target.classList.add("left");
+              break;
+            case -1:
+              e.target.classList.add("right");
+              break;
+            case 10:
+              e.target.classList.add("up");
+              break;
+            default:
+              e.target.classList.add("down");
+          }
+          break;
+        }
+      }
+    }
+  })
+  cell.addEventListener("mouseleave", function (e) {
+    e.target.style.cssText = ""
+    e.target.classList.remove("left");
+    e.target.classList.remove("right");
+    e.target.classList.remove("up");
+    e.target.classList.remove("down");
   })
 })
 

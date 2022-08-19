@@ -46,6 +46,7 @@ body {
   border-radius: 10px;
   font-size: 50px;
   border: 2px solid transparent;
+  position: relative;
 }
 
 .wrapper > .algos > button {
@@ -60,7 +61,6 @@ body {
 }
 
 .wrapper > .algos > button:hover,
-.wrapper > .grid > div > span:hover,
 .pop-up:hover {
   color: var(--color, #c39a3b);
   background-color: var(--back-color, #212121);
@@ -147,4 +147,36 @@ button {
   .toggle {
     display: none;
   }
+}
+
+.up::before, .down::before, .left::before, .right::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  filter: var(--filter1);
+  z-index: 1;
+}
+
+span.up::before {
+  background: url("./square-caret-up-solid.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: -35px;
+}
+span.down::before {
+  background: url("./square-caret-down-solid.svg");
+  background-repeat: no-repeat;
+  bottom: -35px;
+}
+span.left::before {
+  background: url("./square-caret-left-solid.svg");
+  background-repeat: no-repeat;
+  left: -33px
+}
+span.right::before {
+  background: url("./square-caret-right-solid.svg");
+  background-repeat: no-repeat;
+  right: -37px;
 }
