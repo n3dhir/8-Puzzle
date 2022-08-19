@@ -3,6 +3,24 @@ let bfsButton = document.querySelector(".bfs-button");
 let dfsButton = document.querySelector(".dfs-button");
 let ASatrButton = document.querySelector(".a-star-button");
 let shuffleButton = document.querySelector(".shuffle-button");
+let toggleButton = document.querySelector('#toggle-button');
+
+toggleButton.addEventListener("click", function () {
+  let sheet = document.styleSheets[1];
+  if (toggleButton.checked) {
+    sheet.cssRules[1].style.setProperty("--back-color", "#212121");
+    sheet.cssRules[1].style.setProperty("--color", "#c39a3b");
+    sheet.cssRules[1].style.setProperty("--filter1", "invert(1%) sepia(14%) saturate(53%) hue-rotate(314deg) brightness(107%) contrast(76%)");
+    sheet.cssRules[1].style.setProperty("--filter2", "invert(60%) sepia(64%) saturate(377%) hue-rotate(4deg) brightness(90%) contrast(101%)");
+  }
+  else {
+    sheet.cssRules[1].style.setProperty("--back-color", "#fafafa");
+    sheet.cssRules[1].style.setProperty("--color", "#6125f9");
+    sheet.cssRules[1].style.setProperty("--filter1", "invert(100%) sepia(57%) saturate(1%) hue-rotate(286deg) brightness(110%) contrast(96%)");
+    sheet.cssRules[1].style.setProperty("--filter2", "invert(18%) sepia(79%) saturate(6544%) hue-rotate(258deg) brightness(96%) contrast(103%)");
+  }
+})
+
 let moves = [[-1, 0, 3, 6], [1, 2, 5, 8], [-3, 0, 1, 2], [3, 6, 7, 8]];
 
 cells.forEach((cell) => {
@@ -239,7 +257,7 @@ function AStar() {
     let current = pq.shift();
     let currentNode = current[1];
     vis[currentNode] = true;
-    if(dist[currentNode] + heuristic(currentNode) < current[0])
+    if (dist[currentNode] + heuristic(currentNode) < current[0])
       continue;
     if (check(currentNode)) {
       let path = [];
@@ -264,7 +282,7 @@ function AStar() {
           if (flag) {
             let neighbor = [...currentNode];
             [neighbor[i], neighbor[i + moves[j][0]]] = [neighbor[i + moves[j][0]], neighbor[i]];
-            if(vis[neighbor])
+            if (vis[neighbor])
               continue;
             if (!par[neighbor] || dist[neighbor] > dist[currentNode] + 1) {
               par[neighbor] = currentNode;
