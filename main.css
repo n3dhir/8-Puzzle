@@ -143,12 +143,6 @@ button {
   right: calc(100% - 38px);
 }
 
-@media (max-width: 549px) {
-  .toggle {
-    display: none;
-  }
-}
-
 .up::before, .down::before, .left::before, .right::before {
   content: "";
   position: absolute;
